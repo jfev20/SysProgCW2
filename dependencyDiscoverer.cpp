@@ -1,3 +1,11 @@
+/**
+ * Name: Joel Feven
+ * GUID: 2306734f
+ * Title: SP Exercise 2
+ * Declaration: This is my own work as defined 
+ *              in the Academic Ethics agreement
+ *              I have signed
+ */
 /*
  * usage: ./dependencyDiscoverer [-Idir] ... file.c|file.l|file.y ...
  *
