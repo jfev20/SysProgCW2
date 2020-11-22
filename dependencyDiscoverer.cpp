@@ -131,9 +131,10 @@ struct the_Table {
     }
 
     /**
-     * 
+     * returns a pointer to location of the table element
+     * containing the parameter string
      */
-    std::list<std::string> *something(std::string str) {   ();
+    std::list<std::string> *index(std::string str) {
       std::unique_lock<std::mutex> lock(mutex);
       return &table[str];
     }
@@ -284,7 +285,7 @@ static void printDependencies(std::unordered_set<std::string> *printed,
     std::string name = toProcess->front();
     toProcess->pop_front();
     // 3. lookup file in the table, yielding list of dependencies
-    std::list<std::string> *ll = theTable.something(name);         ();       // changed
+    std::list<std::string> *ll = theTable.index(name);                // making used of new index method
     // 4. iterate over dependencies
     for (auto iter = ll->begin(); iter != ll->end(); iter++) {
       // 4a. if filename is already in the printed table, continue
@@ -367,7 +368,7 @@ int main(int argc, char *argv[]) {
           fprintf(stderr, "Mismatch between table and workQ\n");
         }
         // 4a&b. lookup dependencies and invoke 'process'
-        process(file.c_str(), theTable.something(file));    ();              // changed
+        process(file.c_str(), theTable.index(file));                      // making use of new index method
       }
     });
   }
